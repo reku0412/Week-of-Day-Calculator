@@ -23,34 +23,66 @@ def show_day_of_week(z):
     days = ["土曜日", "日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日"]
     return days[z]
 
+# 閏年判定
+def is_leap_year(year):
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+# 年初からの日数計算
+def day_of_year(year, month, day):
+    date = datetime(year, month, day)
+    start_of_year = datetime(year, 1, 1)
+    return (date - start_of_year).days + 1
+
+# 残り日数計算
+def remaining_days(year, month, day):
+    total_days = 366 if is_leap_year(year) else 365
+    return total_days - day_of_year(year, month, day)
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
 
+    # 初期値
+    weekday = ""
+    leap_text = ""
+    day_number = None
+    remaining = None
     result = ""
 
     if request.method == "POST":
 
         try:
-            # HTMLから受け取る
             date = request.form["date"]
 
-            # 年月日に分割
             year, month, day = map(int, date.split("-"))
 
-            # 日付が存在するかチェック
+            # 日付チェック
             datetime(year, month, day)
 
-            # 曜日計算
+            # 曜日
             z = zeller_congruence(day, month, year)
             weekday = show_day_of_week(z)
 
-            result = f"{year}年{month}月{day}日は {weekday} です"
+            # 閏年
+            leap = is_leap_year(year)
+            leap_text = "はい 🌏" if leap else "いいえ"
+
+            # 年初からの日数
+            day_number = day_of_year(year, month, day)
+
+            # 年末まで
+            remaining = remaining_days(year, month, day)
 
         except ValueError:
-            result = "⚠️ 無効な日付です。正しい日付を入力してください。"
+            result = "⚠️ 無効な日付です。"
 
-    return render_template("index.html", result=result)
-
+    return render_template(
+        "index.html",
+        weekday=weekday,
+        leap=leap_text,
+        day_of_year=day_number,
+        remaining_days=remaining,
+        result=result,
+    )
 if __name__ == "__main__":
     app.run(debug=True)

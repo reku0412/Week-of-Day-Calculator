@@ -11,27 +11,59 @@
 
 <div class="container">
 
-    <h1>📅 Weekday Calculator</h1>
+    <h1>📅 Date Utility</h1>
+    <p class="subtitle">入力した日付を分析します</p>
 
     <form method="POST">
 
-    <p>
-        <label for="date">📅 日付を選択</label><br>
+        <label for="date">日付を選択</label>
+
         <input
             type="date"
             id="date"
             name="date"
             required>
-    </p>
 
-    <button type="submit">曜日を計算</button>
+        <button type="submit">
+            🔍 Analyze Date
+        </button>
 
-</form>
+    </form>
+
+    {% if weekday %}
+
+    <div class="result">
+
+        <h2>📊 Date Information</h2>
+
+        <div class="info-card">
+            <h3>🗓️ 曜日</h3>
+            <p>{{ weekday }}</p>
+        </div>
+
+        <div class="info-card">
+            <h3>🌏 閏年</h3>
+            <p>{{ leap }}</p>
+        </div>
+
+        <div class="info-card">
+            <h3>📆 年初からの日数</h3>
+            <p>{{ day_of_year }} 日目</p>
+        </div>
+
+        <div class="info-card">
+            <h3>⏳ 年末まで</h3>
+            <p>あと {{ remaining_days }} 日</p>
+        </div>
+
+    </div>
+
+    {% endif %}
 
     {% if result %}
-    <div class="result">
-        {{ result }}
-    </div>
+        <div class="error">
+            {{ result }}
+        </div>
     {% endif %}
 
 </div>

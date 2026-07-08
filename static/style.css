@@ -2,9 +2,9 @@ body{
 
     margin:0;
 
-    background:linear-gradient(135deg,#74ebd5,#9face6);
+    font-family:Arial, Helvetica, sans-serif;
 
-    font-family:sans-serif;
+    background:linear-gradient(135deg,#6dd5ed,#2193b0);
 
     display:flex;
 
@@ -12,27 +12,45 @@ body{
 
     align-items:center;
 
-    height:100vh;
+    min-height:100vh;
 
 }
 
 .container{
 
-    background:white;
+    width:420px;
 
-    padding:40px;
+    background:white;
 
     border-radius:20px;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    padding:35px;
 
-    width:350px;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
 
 }
 
 h1{
 
     text-align:center;
+
+    margin-bottom:5px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:25px;
+
+}
+
+label{
+
+    font-weight:bold;
 
 }
 
@@ -42,9 +60,9 @@ input{
 
     padding:12px;
 
-    margin-top:5px;
+    margin-top:8px;
 
-    margin-bottom:15px;
+    margin-bottom:20px;
 
     border-radius:10px;
 
@@ -52,44 +70,102 @@ input{
 
     box-sizing:border-box;
 
+    font-size:16px;
+
 }
 
 button{
 
     width:100%;
 
-    padding:12px;
+    padding:14px;
+
+    background:#007BFF;
+
+    color:white;
 
     border:none;
 
     border-radius:10px;
 
-    background:#4f7cff;
-
-    color:white;
-
-    font-size:18px;
+    font-size:17px;
 
     cursor:pointer;
+
+    transition:.2s;
 
 }
 
 button:hover{
 
-    background:#345fd1;
+    transform:translateY(-2px);
+
+    background:#005ecb;
 
 }
 
 .result{
 
-    margin-top:20px;
+    margin-top:30px;
+
+}
+
+.result h2{
 
     text-align:center;
+
+    margin-bottom:20px;
+
+}
+
+.info-card{
+
+    background:#f8f9fa;
+
+    border-left:6px solid #007BFF;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border-radius:10px;
+
+    transition:.2s;
+
+}
+
+.info-card:hover{
+
+    transform:scale(1.02);
+
+}
+
+.info-card h3{
+
+    margin:0;
+
+    color:#007BFF;
+
+}
+
+.info-card p{
+
+    margin:10px 0 0;
 
     font-size:22px;
 
     font-weight:bold;
 
-    color:#4f7cff;
+}
+
+.error{
+
+    margin-top:20px;
+
+    color:red;
+
+    text-align:center;
+
+    font-weight:bold;
 
 }
