@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -29,17 +30,27 @@ def index():
     result = ""
 
     if request.method == "POST":
-        year = int(request.form["year"])
-        month = int(request.form["month"])
-        day = int(request.form["day"])
 
-        z = zeller_congruence(day, month, year)
-        result = show_day_of_week(z)
+        try:
+            # HTMLから受け取る
+            date = request.form["date"]
 
-        result = f"{year}年{month}月{day}日は {result} です"
+            # 年月日に分割
+            year, month, day = map(int, date.split("-"))
+
+            # 日付が存在するかチェック
+            datetime(year, month, day)
+
+            # 曜日計算
+            z = zeller_congruence(day, month, year)
+            weekday = show_day_of_week(z)
+
+            result = f"{year}年{month}月{day}日は {weekday} です"
+
+        except ValueError:
+            result = "⚠️ 無効な日付です。正しい日付を入力してください。"
 
     return render_template("index.html", result=result)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
