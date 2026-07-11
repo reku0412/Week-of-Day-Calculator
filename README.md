@@ -3,7 +3,7 @@
 A web application that analyzes a selected date and displays useful information.
 
 🌐 **Live Demo**  
-（ここにRenderのURLを貼る）
+https://week-of-day-calculator.onrender.com
 
 ---
 
