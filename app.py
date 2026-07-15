@@ -43,6 +43,10 @@ def remaining_days(year, month, day):
 def index():
 
     # 初期値
+    year = None
+    month = None
+    day = None
+    
     weekday = ""
     leap_text = ""
     day_number = None
@@ -77,12 +81,15 @@ def index():
             result = "⚠️ 無効な日付です。"
 
     return render_template(
-        "index.html",
-        weekday=weekday,
-        leap=leap_text,
-        day_of_year=day_number,
-        remaining_days=remaining,
-        result=result,
-    )
+    "index.html",
+    year=year,
+    month=month,
+    day=day,
+    weekday=weekday,
+    leap=leap_text,
+    day_of_year=day_number,
+    remaining_days=remaining,
+    result=result,
+)
 if __name__ == "__main__":
     app.run(debug=True)

@@ -104,6 +104,14 @@ button:hover{
 
 }
 
+.selected-date{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
 .result{
 
     margin-top:30px;
